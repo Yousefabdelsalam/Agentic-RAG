@@ -1,0 +1,93 @@
+[project]
+name = "agentic-rag"
+version = "0.1.0"
+description = "Enterprise Agentic RAG platform"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    # multipart/form-data parsing, required by FastAPI for file uploads
+    "python-multipart>=0.0.12",
+    "pydantic>=2.9.0",
+    "pydantic-settings>=2.6.0",
+    "langgraph>=0.2.45",
+    "langchain-core>=0.3.15",
+    "langchain-openai>=0.2.5",
+    "langsmith>=0.1.140",
+    "langchain-chroma>=0.1.4",
+    "langchain-text-splitters>=0.3.2",
+    "chromadb>=0.5.15",
+    "pypdf>=5.1.0",
+    # Windows ships no IANA timezone database, so zoneinfo has nothing to read
+    # and the current_time tool can only ever answer in UTC without this.
+    "tzdata>=2024.2",
+    "openai>=1.54.0",
+    "structlog>=24.4.0",
+    "orjson>=3.10.10",
+]
+
+[project.optional-dependencies]
+# The answer cache runs on an in-process backend by default. Redis is what makes
+# it shared — across replicas and across restarts — and is not required to run.
+redis = ["redis>=5.0.0"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "httpx>=0.27.2",
+    "ruff>=0.7.2",
+    "mypy>=1.13.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "ASYNC", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+# RUF012 wants ClassVar on mutable class attributes. These are pydantic model
+# fields, where a mutable default is deep-copied per instance, so the shared-state
+# hazard the rule describes cannot occur. Annotating them ClassVar would delete
+# the field.
+"app/agents/base.py" = ["RUF012"]
+"app/memory/base.py" = ["RUF012"]
+"app/retrieval/base.py" = ["RUF012"]
+# lru_cache(maxsize=None) is equivalent to cache() and reads more explicitly about
+# the unbounded intent.
+"app/prompts/registry.py" = ["UP033"]
+# RUF001 flags characters that can be confused with ASCII ones. This module's
+# normalisation table is a mapping *from* exactly those characters, so every
+# entry trips the rule by construction; each is named in a trailing comment.
+"app/cache/keys.py" = ["RUF001"]
+# Same reason on the other side: these tests assert that a curly apostrophe and
+# an ASCII one normalise to the same question, which needs both in the source.
+"tests/test_cache.py" = ["RUF001"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+
+# redis is an optional extra, so a checkout without it must still type-check.
+# The import is guarded at runtime and the client is held behind `Any`.
+[[tool.mypy.overrides]]
+module = ["redis.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+    "integration: exercises the real stack end to end; slower than the unit suite",
+]

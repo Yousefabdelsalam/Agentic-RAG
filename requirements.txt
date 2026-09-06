@@ -1,0 +1,5 @@
+# Dependencies are declared once in pyproject.toml (source of truth).
+# This file exists for tooling that only understands requirements files.
+#   uv sync                       -> dev + runtime, locked
+#   pip install -r requirements.txt -> runtime only
+.

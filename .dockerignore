@@ -1,0 +1,15 @@
+.git/
+.venv/
+.env
+.chroma/
+__pycache__/
+tests/
+*.md
+# pyproject declares readme = "README.md", so hatchling reads it while building
+# the project itself. Excluding it fails the image build, not just the metadata.
+!README.md
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+Makefile
+docker-compose.yml

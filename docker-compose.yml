@@ -1,0 +1,76 @@
+# Default stack: the API with Chroma as a separate service.
+#
+# Running Chroma out-of-process is what makes the API replaceable without losing
+# the index — a rebuilt or restarted container reconnects to the same store.
+# For a single-container deployment, drop the chroma service and unset
+# CHROMA__HOST; the API then persists to its own volume instead.
+
+services:
+  api:
+    build: .
+    env_file:
+      # Optional so a missing .env starts the API in its documented degraded
+      # mode — 502 with a stated reason on /chat — rather than failing here with
+      # a compose error that says nothing about what the project needs.
+      - path: .env
+        required: false
+    environment:
+      # Point the API at the Chroma service rather than its local directory.
+      CHROMA__HOST: chroma
+      CHROMA__PORT: "8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      chroma:
+        condition: service_healthy
+    volumes:
+      - chroma-data:/app/.chroma
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - |
+          import urllib.request, sys
+          sys.exit(0 if urllib.request.urlopen(
+              "http://127.0.0.1:8000/api/v1/health", timeout=4).status == 200 else 1)
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+    restart: unless-stopped
+    stop_grace_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+
+  chroma:
+    image: chromadb/chroma:1.0.0
+    volumes:
+      - chroma-server-data:/data
+    environment:
+      IS_PERSISTENT: "TRUE"
+      ANONYMIZED_TELEMETRY: "FALSE"
+    healthcheck:
+      # The API must not start querying a store that is still opening its files.
+      test: ["CMD", "/bin/bash", "-c", "cat < /dev/null > /dev/tcp/127.0.0.1/8000"]
+      interval: 10s
+      timeout: 5s
+      start_period: 20s
+      retries: 5
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  chroma-data:
+  chroma-server-data:

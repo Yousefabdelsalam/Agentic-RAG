@@ -1,0 +1,8 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "agentic_rag": "./app/agents/server.py:make_graph"
+  },
+  "env": ".env",
+  "python_version": "3.12"
+}

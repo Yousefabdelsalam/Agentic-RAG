@@ -1,0 +1,502 @@
+2026-08-08T17:30:09.729342Z [info     ] tracing.enabled                [app.core.tracing] endpoint=https://api.smith.langchain.com project=agentic-rag
+2026-08-08T17:30:09.761191Z [info     ] Started server process [31620] [uvicorn.error]
+2026-08-08T17:30:09.761191Z [info     ] Waiting for application startup. [uvicorn.error]
+2026-08-08T17:30:09.761191Z [info     ] component.started              [app.core.container] component=InMemoryStore
+2026-08-08T17:30:10.457864Z [info     ] embeddings.ready               [app.services.embeddings] batch_size=128 model=text-embedding-3-small
+2026-08-08T17:30:10.457864Z [info     ] component.started              [app.core.container] component=EmbeddingService
+2026-08-08T17:30:10.490628Z [info     ] chat.ready                     [app.services.llm] model=gpt-4o-mini
+2026-08-08T17:30:10.490628Z [info     ] component.started              [app.core.container] component=ChatService
+2026-08-08T17:30:10.690749Z [info     ] chroma.ready                   [app.retrieval.chroma] collection=documents remote=False
+2026-08-08T17:30:10.690749Z [info     ] component.started              [app.core.container] component=ChromaVectorStore
+2026-08-08T17:30:10.690749Z [info     ] component.started              [app.core.container] component=RetrieverFactory
+2026-08-08T17:30:10.690749Z [info     ] component.started              [app.core.container] component=PdfDocumentLoader
+2026-08-08T17:30:10.690749Z [info     ] component.started              [app.core.container] component=RecursiveChunker
+2026-08-08T17:30:10.690749Z [info     ] component.started              [app.core.container] component=Indexer
+2026-08-08T17:30:10.690749Z [info     ] component.started              [app.core.container] component=DocumentIngestionPipeline
+2026-08-08T17:30:10.690749Z [info     ] component.started              [app.core.container] component=AgenticRagAgent
+2026-08-08T17:30:10.690749Z [info     ] app.started                    [app.main] environment=local version=0.1.0
+2026-08-08T17:30:10.690749Z [info     ] Application startup complete.  [uvicorn.error]
+2026-08-08T17:30:10.690749Z [info     ] Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit) [uvicorn.error]
+D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py:144: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  response = await f(request)
+2026-08-08T17:30:17.659100Z [info     ] request.completed              [app.request] duration_ms=4.16 method=GET path=/api/v1/health request_id=10341ee2ef2c49d085fd79818f1ef8a0 status_code=200
+2026-08-08T17:30:17.659100Z [info     ] 127.0.0.1:61208 - "GET /api/v1/health HTTP/1.1" 200 [uvicorn.access]
+2026-08-08T17:30:17.690616Z [info     ] request.completed              [app.request] duration_ms=0.27 method=GET path=/docs request_id=c2aabd03bf7d4294b3cd182596037ef5 status_code=200
+2026-08-08T17:30:17.696460Z [info     ] 127.0.0.1:61209 - "GET /docs HTTP/1.1" 200 [uvicorn.access]
+2026-08-08T17:30:44.092067Z [info     ] request.completed              [app.request] duration_ms=0.24 method=GET path=/docs request_id=62677defedd14f27b45475eceab6d8b3 status_code=200
+2026-08-08T17:30:44.092067Z [info     ] 127.0.0.1:59233 - "GET /docs HTTP/1.1" 200 [uvicorn.access]
+2026-08-08T17:30:44.323899Z [info     ] request.completed              [app.request] duration_ms=44.36 method=GET path=/openapi.json request_id=79d8d848b9a84223911e9f4307816a2d status_code=200
+2026-08-08T17:30:44.325131Z [info     ] 127.0.0.1:59233 - "GET /openapi.json HTTP/1.1" 200 [uvicorn.access]
+2026-08-08T17:31:14.527553Z [info     ] ingestion.started              [app.ingestion.pipeline] method=POST path=/api/v1/upload request_id=46b65a3cd5ea4ed388c29fd8aadf63fe uri='C:\\Users\\youse\\AppData\\Local\\Temp\\upload-gbj2l34d\\Lec 5 DL_copy.pdf'
+2026-08-08T17:31:15.590921Z [info     ] ingestion.loaded               [app.ingestion.loader] documents=80 method=POST pages=80 path=/api/v1/upload request_id=46b65a3cd5ea4ed388c29fd8aadf63fe source='C:\\Users\\youse\\AppData\\Local\\Temp\\upload-gbj2l34d\\Lec 5 DL_copy.pdf'
+2026-08-08T17:31:15.597058Z [info     ] ingestion.chunked              [app.ingestion.chunker] chunks=84 documents=80 method=POST path=/api/v1/upload request_id=46b65a3cd5ea4ed388c29fd8aadf63fe
+2026-08-08T17:31:27.817644Z [info     ] Retrying request to /embeddings in 0.496023 seconds [openai._base_client] method=POST path=/api/v1/upload request_id=46b65a3cd5ea4ed388c29fd8aadf63fe
+2026-08-08T17:31:40.314333Z [info     ] Retrying request to /embeddings in 0.790698 seconds [openai._base_client] method=POST path=/api/v1/upload request_id=46b65a3cd5ea4ed388c29fd8aadf63fe
+2026-08-08T17:32:03.859966Z [info     ] Retrying request to /embeddings in 1.768705 seconds [openai._base_client] method=POST path=/api/v1/upload request_id=46b65a3cd5ea4ed388c29fd8aadf63fe
+2026-08-08T17:32:10.623304Z [warning  ] Failed to get info from https://api.smith.langchain.com: LangSmithConnectionError('Connection error caused failure to GET /info in LangSmith API. Please confirm your internet connection. ConnectionError(MaxRetryError(\'HTTPSConnectionPool(host=\\\'api.smith.langchain.com\\\', port=443): Max retries exceeded with url: /info (Caused by ReadTimeoutError("HTTPSConnectionPool(host=\\\'api.smith.langchain.com\\\', port=443): Read timed out. (read timeout=10.0)"))\'))\nContent-Length: None\nAPI Key: lsv2_********************************************67') [langsmith.client]
+2026-08-08T17:32:10.623304Z [warning  ] Run compression is not enabled. Please update to the latest version of LangSmith. Falling back to regular multipart ingestion. [langsmith.client]
+2026-08-08T17:32:20.879824Z [warning  ] trace.failed                   [app.core.observability] duration_ms=65206.73 error=DependencyError method=POST path=/api/v1/upload request_id=46b65a3cd5ea4ed388c29fd8aadf63fe span=embeddings.documents
+2026-08-08T17:32:20.884149Z [error    ] request.failed                 [app.request] duration_ms=66381.8 method=POST path=/api/v1/upload request_id=46b65a3cd5ea4ed388c29fd8aadf63fe
+  + Exception Group Traceback (most recent call last):
+  |   File "D:\Agentic RAG\app\core\middleware.py", line 35, in dispatch
+  |     response = await call_next(request)
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+  |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+  |     await self.app(scope, receive_or_disconnect, send_no_error)
+  |   File "D:\Agentic RAG\app\core\timeout.py", line 65, in __call__
+  |     await self.app(scope, receive, guarded_send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+  |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+  |     raise exc
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+  |     await app(scope, receive, sender)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+  |     await self.app(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\routing.py", line 660, in __call__
+  |     await self.middleware_stack(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+  |     await route.handle(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+  |     await self.original_router.handle(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+  |     await included_router._handle_selected(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 1791, in _handle_selected
+  |     await route.handle(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+  |     await self.original_router.handle(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+  |     await included_router._handle_selected(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+  |     await original_route.handle(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+  |     await app(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+  |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+  |     raise exc
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+  |     await app(scope, receive, sender)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+  |     response = await f(request)
+  |                ^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 706, in app
+  |     raw_response = await run_endpoint_function(
+  |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 352, in run_endpoint_function
+  |     return await dependant.call(**values)
+  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\app\api\v1\upload.py", line 61, in upload
+  |     chunks = await pipeline.ingest(str(target))
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\app\ingestion\pipeline.py", line 39, in ingest
+  |     indexed = await self._indexer.index(chunks)
+  |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\app\ingestion\indexer.py", line 36, in index
+  |     async with anyio.create_task_group() as group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    |     yield
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_transports\default.py", line 394, in handle_async_request
+    |     resp = await self._pool.handle_async_request(req)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 256, in handle_async_request
+    |     raise exc from None
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 236, in handle_async_request
+    |     response = await connection.handle_async_request(
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_async\connection.py", line 101, in handle_async_request
+    |     raise exc
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_async\connection.py", line 78, in handle_async_request
+    |     stream = await self._connect(request)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_async\connection.py", line 156, in _connect
+    |     stream = await stream.start_tls(**kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_backends\anyio.py", line 67, in start_tls
+    |     with map_exceptions(exc_map):
+    |          ^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\youse\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    |     raise to_exc(exc) from exc
+    | httpcore.ConnectError
+    | 
+    | The above exception was the direct cause of the following exception:
+    | 
+    | Traceback (most recent call last):
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\_base_client.py", line 1709, in request
+    |     response = await self._send_request(
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\_client.py", line 1097, in _send_request
+    |     response = await self._send_with_auth_retry(request, stream=stream, **kwargs)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\_client.py", line 1075, in _send_with_auth_retry
+    |     response = await super()._send_request(request, stream=stream, **kwargs)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\_base_client.py", line 1628, in _send_request
+    |     return await self._client.send(request, stream=stream, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_client.py", line 1629, in send
+    |     response = await self._send_handling_auth(
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_client.py", line 1657, in _send_handling_auth
+    |     response = await self._send_handling_redirects(
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_client.py", line 1694, in _send_handling_redirects
+    |     response = await self._send_single_request(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_client.py", line 1730, in _send_single_request
+    |     response = await transport.handle_async_request(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_transports\default.py", line 393, in handle_async_request
+    |     with map_httpcore_exceptions():
+    |          ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\youse\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    |     raise mapped_exc(message) from exc
+    | httpx.ConnectError
+    | 
+    | The above exception was the direct cause of the following exception:
+    | 
+    | Traceback (most recent call last):
+    |   File "D:\Agentic RAG\app\services\embeddings.py", line 89, in embed_texts
+    |     vectors = await client.aembed_documents(list(texts))
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\langchain_openai\embeddings\base.py", line 790, in aembed_documents
+    |     return await self._aget_len_safe_embeddings(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\langchain_openai\embeddings\base.py", line 696, in _aget_len_safe_embeddings
+    |     response = await self.async_client.create(
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\resources\embeddings.py", line 260, in create
+    |     return await self._post(
+    |            ^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\_base_client.py", line 1992, in post
+    |     return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\_base_client.py", line 1744, in request
+    |     raise APIConnectionError(request=request) from err
+    | openai.APIConnectionError: Connection error.
+    | 
+    | The above exception was the direct cause of the following exception:
+    | 
+    | Traceback (most recent call last):
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\anyio\_core\_tasks.py", line 275, in _run_coro
+    |     retval = await self._coro
+    |              ^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\app\ingestion\indexer.py", line 45, in _index_batch
+    |     await self._store.upsert(batch)
+    |   File "D:\Agentic RAG\app\retrieval\chroma.py", line 80, in upsert
+    |     vectors = await self._embeddings.embed_texts([document.content for document in documents])
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\langsmith\run_helpers.py", line 644, in async_wrapper
+    |     function_result = await asyncio.create_task(  # type: ignore[call-arg]
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\app\core\observability.py", line 65, in instrumented
+    |     result = await function(*args, **kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\app\services\embeddings.py", line 91, in embed_texts
+    |     raise DependencyError(
+    | app.core.exceptions.DependencyError: Embedding request failed
+    +------------------------------------
+2026-08-08T17:32:20.914505Z [info     ] 127.0.0.1:58351 - "POST /api/v1/upload HTTP/1.1" 500 [uvicorn.access]
+2026-08-08T17:32:20.914505Z [error    ] Exception in ASGI application
+ [uvicorn.error]
+  + Exception Group Traceback (most recent call last):
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 422, in run_asgi
+  |     result = await app(  # type: ignore[func-returns-value]
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 63, in __call__
+  |     return await self.app(scope, receive, send)
+  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\applications.py", line 1163, in __call__
+  |     await super().__call__(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\applications.py", line 90, in __call__
+  |     await self.middleware_stack(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+  |     raise exc
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+  |     await self.app(scope, receive, _send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+  |     await self.simple_response(scope, receive, send, request_headers=headers)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+  |     await self.app(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\middleware\base.py", line 193, in __call__
+  |     response = await self.dispatch_func(request, call_next)
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\app\core\middleware.py", line 35, in dispatch
+  |     response = await call_next(request)
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+  |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+  |     await self.app(scope, receive_or_disconnect, send_no_error)
+  |   File "D:\Agentic RAG\app\core\timeout.py", line 65, in __call__
+  |     await self.app(scope, receive, guarded_send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+  |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+  |     raise exc
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+  |     await app(scope, receive, sender)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+  |     await self.app(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\routing.py", line 660, in __call__
+  |     await self.middleware_stack(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+  |     await route.handle(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+  |     await self.original_router.handle(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+  |     await included_router._handle_selected(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 1791, in _handle_selected
+  |     await route.handle(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+  |     await self.original_router.handle(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+  |     await included_router._handle_selected(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+  |     await original_route.handle(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+  |     await app(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+  |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+  |     raise exc
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+  |     await app(scope, receive, sender)
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+  |     response = await f(request)
+  |                ^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 706, in app
+  |     raw_response = await run_endpoint_function(
+  |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py", line 352, in run_endpoint_function
+  |     return await dependant.call(**values)
+  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\app\api\v1\upload.py", line 61, in upload
+  |     chunks = await pipeline.ingest(str(target))
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\app\ingestion\pipeline.py", line 39, in ingest
+  |     indexed = await self._indexer.index(chunks)
+  |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\app\ingestion\indexer.py", line 36, in index
+  |     async with anyio.create_task_group() as group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "D:\Agentic RAG\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 815, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    |     yield
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_transports\default.py", line 394, in handle_async_request
+    |     resp = await self._pool.handle_async_request(req)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 256, in handle_async_request
+    |     raise exc from None
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 236, in handle_async_request
+    |     response = await connection.handle_async_request(
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_async\connection.py", line 101, in handle_async_request
+    |     raise exc
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_async\connection.py", line 78, in handle_async_request
+    |     stream = await self._connect(request)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_async\connection.py", line 156, in _connect
+    |     stream = await stream.start_tls(**kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_backends\anyio.py", line 67, in start_tls
+    |     with map_exceptions(exc_map):
+    |          ^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\youse\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    |     raise to_exc(exc) from exc
+    | httpcore.ConnectError
+    | 
+    | The above exception was the direct cause of the following exception:
+    | 
+    | Traceback (most recent call last):
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\_base_client.py", line 1709, in request
+    |     response = await self._send_request(
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\_client.py", line 1097, in _send_request
+    |     response = await self._send_with_auth_retry(request, stream=stream, **kwargs)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\_client.py", line 1075, in _send_with_auth_retry
+    |     response = await super()._send_request(request, stream=stream, **kwargs)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\_base_client.py", line 1628, in _send_request
+    |     return await self._client.send(request, stream=stream, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_client.py", line 1629, in send
+    |     response = await self._send_handling_auth(
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_client.py", line 1657, in _send_handling_auth
+    |     response = await self._send_handling_redirects(
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_client.py", line 1694, in _send_handling_redirects
+    |     response = await self._send_single_request(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_client.py", line 1730, in _send_single_request
+    |     response = await transport.handle_async_request(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_transports\default.py", line 393, in handle_async_request
+    |     with map_httpcore_exceptions():
+    |          ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\youse\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    |     raise mapped_exc(message) from exc
+    | httpx.ConnectError
+    | 
+    | The above exception was the direct cause of the following exception:
+    | 
+    | Traceback (most recent call last):
+    |   File "D:\Agentic RAG\app\services\embeddings.py", line 89, in embed_texts
+    |     vectors = await client.aembed_documents(list(texts))
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\langchain_openai\embeddings\base.py", line 790, in aembed_documents
+    |     return await self._aget_len_safe_embeddings(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\langchain_openai\embeddings\base.py", line 696, in _aget_len_safe_embeddings
+    |     response = await self.async_client.create(
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\resources\embeddings.py", line 260, in create
+    |     return await self._post(
+    |            ^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\_base_client.py", line 1992, in post
+    |     return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\openai\_base_client.py", line 1744, in request
+    |     raise APIConnectionError(request=request) from err
+    | openai.APIConnectionError: Connection error.
+    | 
+    | The above exception was the direct cause of the following exception:
+    | 
+    | Traceback (most recent call last):
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\anyio\_core\_tasks.py", line 275, in _run_coro
+    |     retval = await self._coro
+    |              ^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\app\ingestion\indexer.py", line 45, in _index_batch
+    |     await self._store.upsert(batch)
+    |   File "D:\Agentic RAG\app\retrieval\chroma.py", line 80, in upsert
+    |     vectors = await self._embeddings.embed_texts([document.content for document in documents])
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\.venv\Lib\site-packages\langsmith\run_helpers.py", line 644, in async_wrapper
+    |     function_result = await asyncio.create_task(  # type: ignore[call-arg]
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\app\core\observability.py", line 65, in instrumented
+    |     result = await function(*args, **kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\Agentic RAG\app\services\embeddings.py", line 91, in embed_texts
+    |     raise DependencyError(
+    | app.core.exceptions.DependencyError: Embedding request failed
+    +------------------------------------
+2026-08-08T17:33:30.085378Z [info     ] request.completed              [app.request] duration_ms=0.3 method=GET path=/docs request_id=aff19de95a9e4e159c099a9dfc5889cb status_code=200
+2026-08-08T17:33:30.086385Z [info     ] 127.0.0.1:60934 - "GET /docs HTTP/1.1" 200 [uvicorn.access]
+2026-08-08T17:33:30.186208Z [info     ] request.completed              [app.request] duration_ms=0.66 method=GET path=/openapi.json request_id=d16bc0a435604dc9b621e9ee207718fb status_code=200
+2026-08-08T17:33:30.186208Z [info     ] 127.0.0.1:60934 - "GET /openapi.json HTTP/1.1" 200 [uvicorn.access]
+2026-08-08T17:33:30.600625Z [info     ] request.completed              [app.request] duration_ms=0.4 method=GET path=/docs request_id=8cec0a4b37da4608b940459577b87a3d status_code=200
+2026-08-08T17:33:30.600990Z [info     ] 127.0.0.1:60934 - "GET /docs HTTP/1.1" 200 [uvicorn.access]
+2026-08-08T17:33:30.709818Z [info     ] request.completed              [app.request] duration_ms=0.58 method=GET path=/openapi.json request_id=5b8933488a604b34a942be87aa5495b9 status_code=200
+2026-08-08T17:33:30.710819Z [info     ] 127.0.0.1:60934 - "GET /openapi.json HTTP/1.1" 200 [uvicorn.access]
+2026-08-08T17:33:56.568339Z [info     ] ingestion.started              [app.ingestion.pipeline] method=POST path=/api/v1/upload request_id=52156e69901f46038824f7db5e9af648 uri='C:\\Users\\youse\\AppData\\Local\\Temp\\upload-1v790tom\\lec 4 DL.pdf'
+2026-08-08T17:33:56.846156Z [info     ] ingestion.loaded               [app.ingestion.loader] documents=29 method=POST pages=32 path=/api/v1/upload request_id=52156e69901f46038824f7db5e9af648 source='C:\\Users\\youse\\AppData\\Local\\Temp\\upload-1v790tom\\lec 4 DL.pdf'
+2026-08-08T17:33:56.846759Z [info     ] ingestion.chunked              [app.ingestion.chunker] chunks=29 documents=29 method=POST path=/api/v1/upload request_id=52156e69901f46038824f7db5e9af648
+2026-08-08T17:34:02.408740Z [info     ] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/upload request_id=52156e69901f46038824f7db5e9af648
+2026-08-08T17:34:02.878379Z [info     ] chroma.upserted                [app.retrieval.chroma] collection=documents count=29 method=POST path=/api/v1/upload request_id=52156e69901f46038824f7db5e9af648
+2026-08-08T17:34:02.878379Z [info     ] ingestion.indexed              [app.ingestion.indexer] batches=1 chunks=29 method=POST path=/api/v1/upload request_id=52156e69901f46038824f7db5e9af648
+2026-08-08T17:34:02.878379Z [info     ] ingestion.completed            [app.ingestion.pipeline] chunks=29 method=POST pages=29 path=/api/v1/upload request_id=52156e69901f46038824f7db5e9af648 uri='C:\\Users\\youse\\AppData\\Local\\Temp\\upload-1v790tom\\lec 4 DL.pdf'
+2026-08-08T17:34:02.878379Z [info     ] api.uploaded                   [app.api.v1.upload] bytes=1759310 chunks=29 filename='lec 4 DL.pdf' method=POST path=/api/v1/upload request_id=52156e69901f46038824f7db5e9af648
+D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py:144: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  response = await f(request)
+2026-08-08T17:34:02.878379Z [info     ] request.completed              [app.request] duration_ms=6328.1 method=POST path=/api/v1/upload request_id=52156e69901f46038824f7db5e9af648 status_code=201
+2026-08-08T17:34:02.881805Z [info     ] 127.0.0.1:59731 - "POST /api/v1/upload HTTP/1.1" 201 [uvicorn.access]
+2026-08-08T17:34:23.309784Z [info     ] ingestion.started              [app.ingestion.pipeline] method=POST path=/api/v1/upload request_id=8aebe3ed404d4d788ed540aefadbc2d3 uri='C:\\Users\\youse\\AppData\\Local\\Temp\\upload-yzygcf2j\\lec 4 DL.pdf'
+2026-08-08T17:34:23.664701Z [info     ] ingestion.loaded               [app.ingestion.loader] documents=29 method=POST pages=32 path=/api/v1/upload request_id=8aebe3ed404d4d788ed540aefadbc2d3 source='C:\\Users\\youse\\AppData\\Local\\Temp\\upload-yzygcf2j\\lec 4 DL.pdf'
+2026-08-08T17:34:23.664701Z [info     ] ingestion.chunked              [app.ingestion.chunker] chunks=29 documents=29 method=POST path=/api/v1/upload request_id=8aebe3ed404d4d788ed540aefadbc2d3
+2026-08-08T17:34:24.727407Z [info     ] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/upload request_id=8aebe3ed404d4d788ed540aefadbc2d3
+2026-08-08T17:34:25.027980Z [info     ] chroma.upserted                [app.retrieval.chroma] collection=documents count=29 method=POST path=/api/v1/upload request_id=8aebe3ed404d4d788ed540aefadbc2d3
+2026-08-08T17:34:25.027980Z [info     ] ingestion.indexed              [app.ingestion.indexer] batches=1 chunks=29 method=POST path=/api/v1/upload request_id=8aebe3ed404d4d788ed540aefadbc2d3
+2026-08-08T17:34:25.027980Z [info     ] ingestion.completed            [app.ingestion.pipeline] chunks=29 method=POST pages=29 path=/api/v1/upload request_id=8aebe3ed404d4d788ed540aefadbc2d3 uri='C:\\Users\\youse\\AppData\\Local\\Temp\\upload-yzygcf2j\\lec 4 DL.pdf'
+2026-08-08T17:34:25.027980Z [info     ] api.uploaded                   [app.api.v1.upload] bytes=1759310 chunks=29 filename='lec 4 DL.pdf' method=POST path=/api/v1/upload request_id=8aebe3ed404d4d788ed540aefadbc2d3
+2026-08-08T17:34:25.032003Z [info     ] request.completed              [app.request] duration_ms=1742.18 method=POST path=/api/v1/upload request_id=8aebe3ed404d4d788ed540aefadbc2d3 status_code=201
+2026-08-08T17:34:25.033014Z [info     ] 127.0.0.1:61599 - "POST /api/v1/upload HTTP/1.1" 201 [uvicorn.access]
+2026-08-08T17:34:47.359980Z [info     ] api.chat                       [app.api.v1.chat] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 session_id=session-42 stream=False
+2026-08-08T17:34:47.371822Z [info     ] agent.memory_loaded            [app.agents.nodes.memory_loader] facts=0 has_summary=False method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 session_id=session-42 turns=0
+2026-08-08T17:34:49.781501Z [info     ] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:34:49.802345Z [info     ] chat.usage                     [app.services.llm] estimated_cost_usd=8.16e-05 input_tokens=360 method=POST model=gpt-4o-mini output_tokens=46 path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:34:49.803352Z [info     ] agent.analyzed                 [app.agents.nodes.analyzer] ambiguous=False intent=factual method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:34:51.142653Z [info     ] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:34:51.151744Z [info     ] chat.usage                     [app.services.llm] estimated_cost_usd=0.00021825 input_tokens=1227 method=POST model=gpt-4o-mini output_tokens=57 path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:34:51.152745Z [info     ] agent.planned                  [app.agents.nodes.planner] filters=0 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 retrieval_needed=True retry=False search_type=similarity tools=0 top_k=5
+2026-08-08T17:34:52.279294Z [info     ] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:34:52.291490Z [info     ] retrieval.vector               [app.retrieval.vector] candidates=15 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 returned=15 search_type=similarity
+2026-08-08T17:34:52.650613Z [info     ] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:34:53.212352Z [info     ] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:34:53.448535Z [info     ] retrieval.compressed           [app.retrieval.compression] characters=1076 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 retrieved=15 returned=5
+2026-08-08T17:34:53.448535Z [info     ] agent.retrieved                [app.agents.nodes.retriever] documents=5 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 retriever=compression(vector) search_type=similarity
+2026-08-08T17:34:55.256653Z [info     ] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:34:55.271561Z [info     ] chat.usage                     [app.services.llm] estimated_cost_usd=0.00010815 input_tokens=597 method=POST model=gpt-4o-mini output_tokens=31 path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:34:55.271561Z [info     ] agent.generated                [app.agents.nodes.generator] characters=178 documents=5 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 tool_results=0
+2026-08-08T17:34:58.212469Z [info     ] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:34:58.226239Z [info     ] chat.usage                     [app.services.llm] estimated_cost_usd=0.0001623 input_tokens=802 method=POST model=gpt-4o-mini output_tokens=70 path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:34:58.226239Z [info     ] agent.critiqued                [app.agents.nodes.critic] confidence=0.9 grounded=True method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 sufficient_context=False unsupported=0
+2026-08-08T17:35:00.316211Z [info     ] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:00.330035Z [info     ] chat.usage                     [app.services.llm] estimated_cost_usd=0.0002361 input_tokens=1306 method=POST model=gpt-4o-mini output_tokens=67 path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:00.330035Z [info     ] agent.planned                  [app.agents.nodes.planner] filters=0 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 retrieval_needed=True retry=True search_type=mmr tools=0 top_k=10
+2026-08-08T17:35:01.656831Z [info     ] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:02.566522Z [info     ] retrieval.vector               [app.retrieval.vector] candidates=29 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 returned=29 search_type=mmr
+2026-08-08T17:35:06.872045Z [info     ] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:07.753695Z [info     ] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:08.350864Z [info     ] retrieval.compressed           [app.retrieval.compression] characters=2175 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 retrieved=29 returned=10
+2026-08-08T17:35:08.350864Z [info     ] agent.retrieved                [app.agents.nodes.retriever] documents=10 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 retriever=compression(vector) search_type=mmr
+2026-08-08T17:35:11.218943Z [info     ] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:11.218943Z [info     ] chat.usage                     [app.services.llm] estimated_cost_usd=0.0001413 input_tokens=842 method=POST model=gpt-4o-mini output_tokens=25 path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:11.218943Z [info     ] agent.generated                [app.agents.nodes.generator] characters=139 documents=10 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 tool_results=0
+2026-08-08T17:35:14.351791Z [info     ] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:14.360158Z [info     ] chat.usage                     [app.services.llm] estimated_cost_usd=0.00019275 input_tokens=1041 method=POST model=gpt-4o-mini output_tokens=61 path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:14.361158Z [info     ] agent.critiqued                [app.agents.nodes.critic] confidence=0.9 grounded=True method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 sufficient_context=False unsupported=0
+2026-08-08T17:35:18.502721Z [info     ] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:18.514731Z [info     ] chat.usage                     [app.services.llm] estimated_cost_usd=0.00023715 input_tokens=1297 method=POST model=gpt-4o-mini output_tokens=71 path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:18.514731Z [info     ] agent.planned                  [app.agents.nodes.planner] filters=0 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 retrieval_needed=True retry=True search_type=similarity tools=0 top_k=5
+2026-08-08T17:35:18.514731Z [info     ] retrieval.vector               [app.retrieval.vector] candidates=15 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 returned=15 search_type=similarity
+2026-08-08T17:35:19.287794Z [info     ] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:19.757600Z [info     ] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:19.941887Z [info     ] retrieval.compressed           [app.retrieval.compression] characters=1076 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 retrieved=15 returned=5
+2026-08-08T17:35:19.941887Z [info     ] agent.retrieved                [app.agents.nodes.retriever] documents=5 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 retriever=compression(vector) search_type=similarity
+2026-08-08T17:35:21.037798Z [info     ] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:21.054736Z [info     ] chat.usage                     [app.services.llm] estimated_cost_usd=0.00010455 input_tokens=597 method=POST model=gpt-4o-mini output_tokens=25 path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:21.054736Z [info     ] agent.generated                [app.agents.nodes.generator] characters=139 documents=5 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 tool_results=0
+2026-08-08T17:35:22.827858Z [info     ] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:22.843560Z [info     ] chat.usage                     [app.services.llm] estimated_cost_usd=0.0001578 input_tokens=796 method=POST model=gpt-4o-mini output_tokens=64 path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:22.843560Z [info     ] agent.critiqued                [app.agents.nodes.critic] confidence=0.9 grounded=True method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 sufficient_context=False unsupported=0
+2026-08-08T17:35:22.843560Z [info     ] agent.loop_exhausted           [app.agents.graph] grounded=True method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 revisions=2 sufficient_context=False
+2026-08-08T17:35:24.631863Z [info     ] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK" [httpx] method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:24.645975Z [info     ] chat.usage                     [app.services.llm] estimated_cost_usd=5.34e-05 input_tokens=340 method=POST model=gpt-4o-mini output_tokens=4 path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634
+2026-08-08T17:35:24.648100Z [info     ] agent.completed                [app.agents.rag] documents=5 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 revisions=2 session_id=session-42
+D:\Agentic RAG\.venv\Lib\site-packages\fastapi\routing.py:144: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  response = await f(request)
+2026-08-08T17:35:24.652675Z [info     ] request.completed              [app.request] duration_ms=37293.53 method=POST path=/api/v1/chat request_id=ec78cfd389fc4a069ec54eb5e6d63634 status_code=200
+2026-08-08T17:35:24.652675Z [info     ] 127.0.0.1:54044 - "POST /api/v1/chat HTTP/1.1" 200 [uvicorn.access]
+2026-08-08T17:36:03.464370Z [warning  ] Failed to multipart ingest runs: Connection error caused failure to POST https://api.smith.langchain.com/runs/multipart in LangSmith API. Please confirm your internet connection. SSLError(MaxRetryError("HTTPSConnectionPool(host='api.smith.langchain.com', port=443): Max retries exceeded with url: /runs/multipart (Caused by SSLError(SSLWantWriteError(3, 'The operation did not complete (write) (_ssl.c:2427)')))"))
+Content-Length: 2262123
+API Key: lsv2_********************************************67trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-5e45-7f21-8faa-546599caaa4b; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-5e45-7943-9d36-0a67e5a038ed; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-5e45-7de2-b322-0b1d0b51e68e; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-5e47-7c92-a1aa-e4a98a694bef; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-3ef2-70d2-8d6c-8ce02c9a6d92; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-3ef1-71d2-8da5-a9e413d8ecf0; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-3ef1-7ea3-aca2-ede6e97e775f; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-59a9-71c0-8bdd-cf6a5515131a [langsmith.client]
+2026-08-08T17:36:56.293538Z [warning  ] Failed to multipart ingest runs: Connection error caused failure to POST https://api.smith.langchain.com/runs/multipart in LangSmith API. Please confirm your internet connection. ConnectionError(MaxRetryError("HTTPSConnectionPool(host='api.smith.langchain.com', port=443): Max retries exceeded with url: /runs/multipart (Caused by ProtocolError('Connection aborted.', TimeoutError('The write operation timed out')))"))
+Content-Length: 2317363
+API Key: lsv2_********************************************67trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-697e-7480-a153-03643b24ee7e; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-6972-72e1-ae55-89ce57449cef; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-6972-7853-974e-dd0907dc5933; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-6980-7c91-8f84-d910acd68d21; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-6981-7a50-a462-7089865a9768; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-6982-7a11-a598-9d46ae25cf5b; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75b2-7453-9d2a-9780022a20a8; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75b3-7512-a20a-dc2ebc9418b0; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75b3-7512-a20a-dc3c9239dee7; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75b3-7512-a20a-dc47ec3e0566; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75b4-78f0-b882-ded9842aaa8f; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75b7-72a0-9115-e7615def902e; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75b4-78f0-b882-decefd48b8b5; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75ba-72e3-94a0-8635aad5e3d2; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75bb-7842-a52a-367b22af4cbc; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75bc-70e0-9206-f94f5e3dc26f; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75bc-7793-b69c-4358c26af63a; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75bf-7c70-9c97-69fd329eeb89; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75c0-7f02-bc38-eb809735112e; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-75c0-7f02-bc38-eb9133f4b27e; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85ee-7353-a9d0-e888fe2e1b9b; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85ee-7353-a9d0-e8943d27eea7; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85ef-7120-b1f9-d602ffaab3c0; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85ef-7120-b1f9-d61bc5c67a7f; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85f0-7880-a022-8833b5439086; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85f2-7163-bc3e-1cabae7eb27f; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85ef-7120-b1f9-d626737163ea; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85f5-7c41-bb56-a1dea3152ab5; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85f6-79f0-9062-aa2ac9bffcfa; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85f2-75a2-9d47-6cfc0e8cc197; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85f2-72f2-9b79-9e3f5d1de8ee; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85f2-7a90-878c-0daac13763e5; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85f2-77e3-ab1a-4bdde027cb75; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85f2-7ab2-9c62-76e437610f9f; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85fd-7012-950c-d5e6c0b1729e; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-85fd-7992-a25f-b21961650358; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-899e-7ac3-b8bd-f7eb93c99caa; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-8b89-78d2-970b-6f13f03a5132; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-8b88-7221-abef-9da13efd4c91; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-8b88-7f12-b18d-d3e08212d727; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-8b8b-7502-9a3b-c760c73c9e91; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-8fe2-7353-84f1-2869a06d8b74; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-8fe2-76f1-b0a9-c567bfe36003; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-8fe3-7111-8961-dc0db94c4923; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-8fe5-74e3-8683-7f977caccfc9; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-8fe5-74e3-8683-7fa7f0803207; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-8fe6-7020-ae95-bba521b235f8; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-0c3f-7510-81a7-fd755c0d76c4; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-0c46-7250-83c7-d9c4c8bcf326; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-5e45-7f21-8faa-546599caaa4b; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-5e45-7943-9d36-0a67e5a038ed; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-5e45-7de2-b322-0b1d0b51e68e; trace=019fe271-0c3f-7510-81a7-fd755c0d76c4,id=019fe271-5e47-7c92-a1aa-e4a98a694bef [langsmith.client]
+D:\Agentic RAG\app\core\handlers.py:43: FastAPIDeprecationWarning: ORJSONResponse is deprecated, FastAPI now serializes data directly to JSON bytes via Pydantic when a return type or response model is set, which is faster and doesn't need a custom response class. Read more in the FastAPI docs: https://fastapi.tiangolo.com/advanced/custom-response/#orjson-or-response-model and https://fastapi.tiangolo.com/tutorial/response-model/
+  return _envelope(request, exc.status_code, payload)
+2026-08-08T17:37:02.516506Z [info     ] request.completed              [app.request] duration_ms=1.19 method=GET path=/favicon.ico request_id=da32fc2ca4374befa2cfa6c5c91f7c06 status_code=404
+2026-08-08T17:37:02.516506Z [info     ] 127.0.0.1:49943 - "GET /favicon.ico HTTP/1.1" 404 [uvicorn.access]
